@@ -1,0 +1,37 @@
+
+        <if test="productSide == '1'.toString()"><!--app端只能查看自己的借款申请列表-->
+            apply_per_code=#{applyPerCode}
+        </if>
+
+
+ddlsflsdkfsdkdslfldsfsdfsdlffasd
+
+
+        Aggregate Operations  聚合操作 [ˈæɡrɪɡət ɑːpəˈreɪʃnz]
+
+
+
+创建客户，用户，部门三者关系的关联快照表，没有初始数据
+
+新增客户时，存储一条三者关系的初始快照数据，快照版本号设置为1
+
+更新用户的部门信息时，以用户id为条件检查快照表中是否存在超过一条数据（初始数据），
+如果没有，往里面存入一条初始数据，快照版本号设置为1
+如果有，快照版本号加一
+
+统计用户新增客户量时，关联快照表查询
+
+
+
+ALTER TABLE oa_cust_info ADD create_dept_id varchar(32) DEFAULT '' NOT NULL COMMENT '创建人所属部门id' AFTER create_by;
+ALTER TABLE oa_cust_info ADD create_dept_name varchar(128) DEFAULT '' NOT NULL COMMENT '创建人所属部门名称' AFTER create_dept_id;
+
+update oa_cust_info cust left join sys_user user on cust.create_by = user.id
+set cust.create_dept_id = user.office_id
+where user.office_id is not null
+  and user.office_id != '';
+
+update oa_cust_info cust left join sys_office office on cust.create_dept_id = office.id
+set create_dept_name = office.name
+where office.name is not null
+  and office.name != '';
