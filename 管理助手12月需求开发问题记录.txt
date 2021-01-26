@@ -166,7 +166,9 @@ ALTER TABLE oa_rent_car_record MODIFY rent_day int NOT NULL DEFAULT 0 COMMENT '�
 
 
 
+排查问题要借助工具，别只盯着代码发呆 。网络问题通常要抓包，JVM问题要用jconsole 或者 arthas 分析，等等
 
+每次费劲解决一个问题后，都要有复盘总结，否则忘了就等于白踩过坑了。
 
 
 
