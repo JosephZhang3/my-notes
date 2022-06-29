@@ -1,7 +1,7 @@
-# Collection2Array-research
+# Collection2Array
 
 
-#### 我们来仔细研究下很多集合类都继承了的抽象类AbstractCollection中的方法toArray(T[] a)，注意是带参数（泛型数组）的！:wave:
+#### 我们来仔细研究下很多集合类都继承了的抽象类AbstractCollection中的方法toArray(T[] a)，注意是带参数（泛型数组）的！
 
     public <T> T[] toArray(T[] a)
 
